@@ -168,6 +168,23 @@ struct Scanner {
   }
 
   bool scan(TSLexer *lexer, const bool *valid_symbols) {
+    if (valid_symbols[HEREDOC_START] &&
+        valid_symbols[SIMPLE_HEREDOC_BODY] &&
+        valid_symbols[HEREDOC_BODY_BEGINNING] &&
+        valid_symbols[HEREDOC_BODY_MIDDLE] &&
+        valid_symbols[HEREDOC_BODY_END] &&
+        valid_symbols[FILE_DESCRIPTOR] &&
+        valid_symbols[EMPTY_VALUE] &&
+        valid_symbols[CONCAT] &&
+        valid_symbols[VARIABLE_NAME] &&
+        valid_symbols[REGEX] &&
+        valid_symbols[CLOSING_BRACE] &&
+        valid_symbols[CLOSING_BRACKET] &&
+        valid_symbols[HEREDOC_ARROW] &&
+        valid_symbols[HEREDOC_ARROW_DASH] &&
+        valid_symbols[NEWLINE])
+      return false;
+
     if (valid_symbols[CONCAT]) {
       if (!(
         lexer->lookahead == 0 ||
